@@ -11,21 +11,21 @@
         <router-link class="nav-link" to="/movies">Movies</router-link>
       </li>
        <li class="nav-item">
-        <router-link class="nav-link" to="/account">My Account</router-link>
+        <router-link v-if="auth" class="nav-link" to="/account">My Account</router-link>
       </li>
        <li class="nav-item">
-        <router-link class="nav-link" to="/signIn">
+        <router-link v-if="!auth" class="nav-link" to="/signIn">
           <button class="btn btn-warning">Sign In</button>
         </router-link>
       </li>
        <li class="nav-item">
-        <router-link class="nav-link" to="/signUp">
+        <router-link v-if="!auth" class="nav-link" to="/signUp">
           <button class="btn btn-outline-warning text-dark">Sign Up</button>
         </router-link>
       </li>
        <li class="nav-item">
        
-          <button class="btn btn-warning">Logout</button>
+          <button @click="onLogout" v-if="auth" class="btn btn-warning">Logout</button>
       </li>
      
     </ul>
@@ -35,7 +35,16 @@
 
 <script>
 export default {
-    
+    computed:{
+       auth(){
+            return this.$store.state.token
+        }
+    },
+    methods:{
+      onLogout(){
+        this.$store.dispatch("logout")
+      }
+    }
 }
 </script>
 

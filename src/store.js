@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios'
+import axios from 'axios';
+import routes from './routes.js'
 
 Vue.use(Vuex);
 
@@ -19,6 +20,10 @@ export default new Vuex.Store({
         },
         storeMovies(state, myMovies){
             state.movies = myMovies
+        },
+        clearAuthData(state){
+            state.token = null;
+            state.user = null;
         }
     },
     actions:{
@@ -29,6 +34,17 @@ export default new Vuex.Store({
                 commit('storeMovies', myResponse.data)
             })
             .catch(()=>{console.log("error getting movies")})
+        },
+        logout({commit, state}){
+            axios.post('/contact/logout', null, {
+                headers:{
+                    Authorization: `Bearer ${state.token}` 
+                }
+            })
+
+            commit('clearAuthData');
+
+            routes.replace("/");
         }
     }
 })
