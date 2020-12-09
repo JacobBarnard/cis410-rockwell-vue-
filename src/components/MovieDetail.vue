@@ -13,9 +13,14 @@
 
         <br/>
 
-        <router-link v-if="auth" :to="`/movies/{$this.route.params.pk}/review`"><button type="button" class="btn btn-success">Add Review</button></router-link>
+        <router-link v-if="auth" :to="`/movies/${this.$route.params.pk}/review`"><button type="button" class="btn btn-success">Add Review</button></router-link>
 
         <router-link v-else :to="`/signin`"><button type="button" class="btn btn-outline-success">Sign in to Add Review</button></router-link>
+
+        <br/>
+        <br/>
+        <router-view></router-view>
+
     </div>
 </template>
 

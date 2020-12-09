@@ -5,7 +5,7 @@ import store from './store.js'
 import Home from './components/Home.vue';
 import Account from './components/Account.vue';
 import Login from './components/Login.vue';
-import MovieDeatil from './components/MovieDetail.vue';
+import MovieDetail from './components/MovieDetail.vue';
 import Movies from './components/Movies.vue';
 import Notfound from './components/Notfound.vue';
 import ReviewCreate from './components/ReviewCreate.vue';
@@ -21,8 +21,8 @@ const routes = [
     }},
     {path: '/signin', component: Login},
     {path: '/movies', component: Movies},
-    {path: '/movies/:pk', component: MovieDeatil,
-        childern: [
+    {path: '/movies/:pk', component: MovieDetail,
+        children: [
             {path: 'review', component: ReviewCreate}
         ]},
     {path: '/signup', component: SignUp},
